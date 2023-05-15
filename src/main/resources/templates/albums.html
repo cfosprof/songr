@@ -4,16 +4,102 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <title>Albums</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 </head>
 <body>
 <h1>Albums</h1>
-<ul class="albums">
-  <li th:each="album : ${albums}">
-    <h2 th:text="${album.title + ' by ' + album.artist}"></h2>
-    <p th:text="'Song Count: ' + ${album.songCount}">Song Count</p>
-    <p th:text="'Length: ' + ${album.length} + ' seconds'">Length</p>
-    <img th:src="${album.imageUrl}" th:alt="${album.title + ' album art'}">
-  </li>
-</ul>
+<div class="grid-container">
+  <div th:each="album : ${albums}" class="grid-item">
+    <div class="card">
+      <img class="card-img" th:src="${album.imageUrl}" th:alt="${album.title + ' album art'}">
+      <div class="card-content">
+        <h2 class="card-title" th:text="${album.title + ' by ' + album.artist}"></h2>
+        <p class="card-text" th:text="'Song Count: ' + ${album.songCount}"></p>
+        <p class="card-text" th:text="'Length: ' + ${album.length} + ' seconds'"></p>
+        <button class="open-modal-btn action-btn" th:data-target="'#editAlbumModal' + ${album.id}">Edit</button>
+        <div th:id="'editAlbumModal' + ${album.id}" class="modal">
+          <div class="modal-content">
+            <span class="close-modal-btn">&times;</span>
+            <form th:action="'/albums/' + ${album.id} + '/update'" method="post">
+              <input type="hidden" name="_method" value="put" />
+              <label for="title">Title:</label><br>
+              <input type="text" id="title" name="title" th:value="${album.title}" class="input-field"><br>
+              <label for="artist">Artist:</label><br>
+              <input type="text" id="artist" name="artist" th:value="${album.artist}" class="input-field"><br>
+              <label for="songCount">Song Count:</label><br>
+              <input type="number" id="songCount" name="songCount" th:value="${album.songCount}" class="input-field"><br>
+              <label for="length">Length:</label><br>
+              <input type="number" id="length" name="length" th:value="${album.length}" class="input-field"><br>
+              <label for="imageUrl">Image URL:</label><br>
+              <input type="text" id="imageUrl" name="imageUrl" th:value="${album.imageUrl}" class="input-field"><br>
+              <input type="submit" value="Update" class="input-field">
+            </form>
+          </div>
+        </div>
+        <form th:action="'/albums/' + ${album.id} + '/delete'" method="post">
+          <input type="hidden" name="_method" value="delete" />
+          <input type="submit" value="Delete" class="action-btn">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const modals = document.querySelectorAll('.modal');
+
+    const openModalButtons = document.querySelectorAll('.open-modal-btn');
+    const closeModalButtons = document.querySelectorAll('.close-modal-btn');
+
+    openModalButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.getAttribute('data-target');
+        document.querySelector(modalId).style.display = "block";
+      });
+    });
+
+    closeModalButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modal = btn.closest('.modal');
+        modal.style.display = "none";
+      });
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+      }
+    });
+  });
+</script>
+<button class="open-modal-btn action-btn" data-target="#addAlbumModal">Add New Album</button>
+<div id="addAlbumModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal-btn">&times;</span>
+    <form action="/albums" method="post">
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" class="input-field">
+      </div>
+      <div>
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" value="${album.artist}" class="input-field">
+      </div>
+      <div>
+        <label for="songCount">Song Count:</label>
+        <input type="number" id="songCount" name="songCount" value="${album.songCount}" class="input-field">
+      </div>
+      <div>
+        <label for="length">Length:</label>
+        <input type="number" id="length" name="length" value="${album.length}" class="input-field">
+      </div>
+      <div>
+        <label for="imageUrl">Image URL:</label>
+        <input type="text" id="imageUrl" name="imageUrl" class="input-field">
+      </div>
+      <input type="submit" value="Submit" class="input-field">
+    </form>
+  </div>
+</div>
 </body>
 </html>
