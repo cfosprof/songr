@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <title>Album</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+</head>
+<body>
+<h1 th:text="${album.title}"></h1>
+<p th:text="'Artist: ' + ${album.artist}"></p>
+<p th:text="'Length: ' + ${album.length} + ' seconds'"></p>
+
+<h2>Songs</h2>
+<div th:each="song : ${album.songs}">
+  <h3 th:text="${song.title}"></h3>
+  <p th:text="'Length: ' + ${song.length} + ' seconds'"></p>
+  <p th:text="'Track Number: ' + ${song.trackNumber}"></p>
+</div>
+
+<h2>Add a new song</h2>
+<form th:action="'/albums/' + ${album.id} + '/songs'" method="post">
+  <label for="title">Title:</label><br>
+  <input type="text" id="title" name="title" class="input-field"><br>
+  <label for="length">Length:</label><br>
+  <input type="number" id="length" name="length" class="input-field"><br>
+  <label for="trackNumber">Track Number:</label><br>
+  <input type="number" id="trackNumber" name="trackNumber" class="input-field"><br>
+  <input type="submit" value="Add Song" class="input-field">
+</form>
+</body>
+</html>
