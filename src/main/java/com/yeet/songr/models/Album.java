@@ -1,11 +1,21 @@
-package com.yeet.songr;
+package com.yeet.songr.models;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Album {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+
     private String title;
     private String artist;
     private int songCount;
     private int length;
     private String imageUrl;
+
+    protected Album() {
+    }
 
     public Album(String title, String artist, int songCount, int length, String imageUrl) {
         this.title = title;
@@ -54,6 +64,12 @@ public class Album {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
-
-
