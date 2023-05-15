@@ -2,6 +2,8 @@ package com.yeet.songr.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Album {
     @Id
@@ -63,6 +65,17 @@ public class Album {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     public Long getId() {

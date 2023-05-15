@@ -6,6 +6,11 @@
   <title>Albums</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 </head>
+<header>
+  <tr th:each="album : ${albums}">
+    <td th:text="${album.title + ' by ' + album.artist}"></td>
+  </tr>
+</header>
 <body>
 <h1>Albums</h1>
 <div class="grid-container">
@@ -83,15 +88,15 @@
       </div>
       <div>
         <label for="artist">Artist:</label>
-        <input type="text" id="artist" name="artist" value="${album.artist}" class="input-field">
+        <input type="text" id="artist" name="artist" class="input-field">
       </div>
       <div>
         <label for="songCount">Song Count:</label>
-        <input type="number" id="songCount" name="songCount" value="${album.songCount}" class="input-field">
+        <input type="number" id="songCount" name="songCount" class="input-field">
       </div>
       <div>
         <label for="length">Length:</label>
-        <input type="number" id="length" name="length" value="${album.length}" class="input-field">
+        <input type="number" id="length" name="length" class="input-field">
       </div>
       <div>
         <label for="imageUrl">Image URL:</label>
