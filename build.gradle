@@ -24,3 +24,6 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+task run(type: JavaExec) {
+	main = 'com.yeet.songr.SongrApplication'
+}

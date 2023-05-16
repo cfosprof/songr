@@ -6,7 +6,10 @@ import com.yeet.songr.repository.AlbumRepository;
 import com.yeet.songr.repository.SongRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -30,14 +33,15 @@ public class HomeController {
         Album album = albumRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid album Id:" + id));
         Song song = new Song(title, length, trackNumber, album);
         songRepository.save(song);
+
         return "redirect:/albums/" + id;
     }
+
 
     @GetMapping("/albums/{id}")
     public String albumById(@PathVariable Long id, Model model) {
         Album album = albumRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid album Id:" + id));
         model.addAttribute("album", album);
-        model.addAttribute("songs", album.getSongs());
         return "album";
     }
     @GetMapping("/albums/new")
