@@ -5,17 +5,26 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <title>Albums</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <style>
+    .carousel {
+      display: flex;
+      overflow: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 50%;
+    }
+    .card {
+      flex: none;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      width: 300px;
+      margin: 10px;
+    }
+  </style>
 </head>
-<header>
-  <tr th:each="album : ${albums}">
-    <td th:text="${album.title + ' by ' + album.artist}"></td>
-  </tr>
-</header>
 <body>
 <h1>Albums</h1>
-<div class="grid-container">
-  <div th:each="album : ${albums}" class="grid-item">
-    <div class="card">
+<div class="carousel">
+    <div th:each="album : ${albums}" class="card">
       <img class="card-img" th:src="${album.imageUrl}" th:alt="${album.title + ' album art'}">
       <div class="card-content">
         <h2 class="card-title" th:text="${album.title + ' by ' + album.artist}"></h2>
