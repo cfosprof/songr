@@ -34,14 +34,14 @@ Branch Name: [Lab-13](/)
 
 ## Resources
 [Class13 Github Repo](https://github.com/codefellows/seattle-code-java401d17/tree/main/class-13)
-[Class14 Github Repo](https://github.com/codefellows/seattle-code-java401d17/tree/main/class-14)
+
 [Class15 Github Repo](https://github.com/codefellows/seattle-code-java401d17/tree/main/class-15)
 [Lecture](https://zoom.us/rec/share/2JLxKSFuJZhRalcdJLEuRyDk--9IGKFzjcyyOgr9F9cz-w1fTchaMZ3cLkVjJxY-.H5mJPB1gJ_UCWiKC)
-[Lecture14](https://zoom.us/rec/share/rXXlhlmiM1MR6EaLsXPjEZvbiU4ed0Cz4X2LthBduxQfT1ir9iWCm4UwB450f-rA.aWv7Ruy_nbl-HCgk)
+
 [Lecture15](https://zoom.us/rec/share/eXN7HHjvYdjbUozx1r_imjYXLNx_2TdFp_vgLvQZMiTkQfdn9QC2dbspVFxoH0M.uzyYNeKIvcobmnQ7)
 
 [Assignment](https://canvas.instructure.com/courses/6504881/assignments/36513370)
-[Assignment14](https://canvas.instructure.com/courses/6504881/assignments/36513371)
+
 [Assignment15](https://canvas.instructure.com/courses/6504881/assignments/36513372)
 
 
